@@ -1,7 +1,12 @@
+
 services:
-  
   db:
     image: postgres
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: user
+
+networks:
+  default:  
+    name: MLI_Network
+    driver: bridge
