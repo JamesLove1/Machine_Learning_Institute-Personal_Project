@@ -23,8 +23,8 @@ if not (PATH / FILENAME).exists():
 with gzip.open((PATH / FILENAME).as_posix(), "rb") as f:
         ((x_train, y_train), (x_valid, y_valid), _) = pickle.load(f, encoding="latin-1")
 
-# pyplot.imshow(x_train[0].reshape((28,28)), cmap="gray")
-# print(x_train.shape)
+pyplot.imshow(x_train[0].reshape((28,28)), cmap="gray")
+print(x_train.shape)
 
 x_train, y_train, x_valid, y_valid = map(
     torch.tensor, (x_train, y_train, x_valid, y_valid)
@@ -66,7 +66,7 @@ def accuracy(out, yb):
 
 print(accuracy(preds, yb))
 
-from IPython.core.debugger import set_trace
+# from IPython.core.debugger import set_trace
 
 lr = 0.5  # learning rate
 epochs = 2  # how many epochs to train for
@@ -94,3 +94,7 @@ print(loss_func(model(xb), yb), accuracy(model(xb), yb))
 # ===================================================
 # got up to         Using torch.nn.functional
 # https://pytorch.org/tutorials/beginner/nn_tutorial.html#using-torch-nn-functional
+
+print("hello world")
+
+

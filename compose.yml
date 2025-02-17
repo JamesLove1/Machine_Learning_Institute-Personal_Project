@@ -1,3 +1,4 @@
+name: MLI-Project
 
 services:
   db:
@@ -5,6 +6,15 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: user
+    volumes:
+      - ./db:/var/lib/postgresql/data
+
+  ai:
+    build: AI
+    volumes:
+      - ./AI:/home
+    depends_on: 
+      - db
 
 networks:
   default:  
