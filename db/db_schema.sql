@@ -17,6 +17,22 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: test; Type: TABLE; Schema: public; Owner: user
+--
+
+CREATE TABLE public.test (
+    id integer,
+    name text
+);
+
+
+ALTER TABLE public.test OWNER TO "user";
+
 --
 -- PostgreSQL database dump complete
 --
