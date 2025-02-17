@@ -1,0 +1,5 @@
+1. connect to db container 
+docker compose exec -it db /bin/bash 
+
+2. use py_dumps command 
+e.g. pg_dump -U user  -s -f /home/db_schema.sql user

@@ -7,7 +7,8 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: user
     volumes:
-      - ./db:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
+      - ./db:/home
 
   ai:
     build: AI
@@ -20,3 +21,6 @@ networks:
   default:  
     name: MLI_Network
     driver: bridge
+
+volumes:
+  pgdata:
