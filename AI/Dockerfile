@@ -1,13 +1,3 @@
-# FROM python:3
-
-# WORKDIR /home
-
-# COPY . /home/
-
-# RUN pip install --no-cache-dir -r requirements.txt
-
-# CMD [ "python", "./main.py" ]
-
 FROM ubuntu:noble-20250127
 
 WORKDIR /home
