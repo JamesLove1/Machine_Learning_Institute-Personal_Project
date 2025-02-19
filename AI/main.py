@@ -4,4 +4,17 @@
 
 print("hello world")
 
+# =======================
+#1.get data 
+
+#2.build neural network 
+
+#3.create loss function 
+
+#4.creat training loop 
+
+#5.save model e.g. weights
+
+
+
 
