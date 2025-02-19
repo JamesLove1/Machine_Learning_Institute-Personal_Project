@@ -46,10 +46,12 @@ testData = datasets.MNIST(root="",
                           transform=ToTensor()
                           )
 
+#3. split / load data into batches 
 train_dataLoader = DataLoader(trainData, batch_size=64, shuffle=True)
 test_dataLoader  = DataLoader(testData,  batch_size=64, shuffle=True)
 
-#3.create loss function 
+
+#4.create loss function 
 
 
 
@@ -77,11 +79,11 @@ print(output)
 
 
 
-#4.create training loop 
+#5.create training loop 
 #   entrophy loss ? 
 #   result given an input ?? 
 
-#5.save model e.g. weights
+#6.save model e.g. weights
 
 
 
