@@ -11,7 +11,6 @@ from torch.utils.data import DataLoader
 
 # =======================
 #1.get data 
-
 trainData = datasets.MNIST(root="", train=True, download=True, transform=ToTensor())
 testData = datasets.MNIST(root="", train=False, download=True, transform=ToTensor())
 
@@ -21,7 +20,7 @@ test_dataLoader  = DataLoader(testData,  batch_size=64, shuffle=True)
 
 for i, batch in enumerate(test_dataLoader):
     
-    print(i)
+    #print(i)
     
     if i >= 1:
         break
