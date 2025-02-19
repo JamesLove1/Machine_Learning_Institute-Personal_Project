@@ -24,7 +24,7 @@ class CCN_Network(nn.Module):
         self.conInputLayer = nn.Conv2d(in_channels=1, out_channels=16,kernel_size=3, stride=1, padding=1)
         self.relu1 = nn.ReLU()
         
-        # output layer 
+        # TODO : output layer 
             
     def forward(self, x):
         
@@ -33,7 +33,6 @@ class CCN_Network(nn.Module):
         return x 
 
 #2.get data 
-
 trainData = datasets.MNIST(root="", 
                            train=True, 
                            download=True, 
@@ -51,13 +50,13 @@ train_dataLoader = DataLoader(trainData, batch_size=64, shuffle=True)
 test_dataLoader  = DataLoader(testData,  batch_size=64, shuffle=True)
 
 
-#4.create loss function 
+# TODO: 4.create loss function 
 
 
+#TODO: 5.create training loop 
 
-
-
-
+#   entrophy loss ? 
+#   result given an input ?? 
 
 # shape  torch.Size([batch=64, channels=1, width=28, height=28])
 
@@ -77,13 +76,7 @@ print(output)
 #     plt.savefig(f"output{i}.png")
 
 
-
-
-#5.create training loop 
-#   entrophy loss ? 
-#   result given an input ?? 
-
-#6.save model e.g. weights
+#TODO: 6.save model e.g. weights
 
 
 

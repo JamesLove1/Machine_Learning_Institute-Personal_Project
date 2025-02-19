@@ -1,6 +1,3 @@
-### AL ###
-#Template for AL projects for Dynamics 365 Business Central
-
 AI/mnist-model/output.png
 AI/mnist-model/MNIST/*
 *.pk.gz
@@ -8,21 +5,33 @@ AI/totorial/data
 
 #launch.json folder
 .vscode/
-#Cache folder
-.alcache/
-#Symbols folder
-.alpackages/
-#Snapshots folder
-.snapshots/
-#Testing Output folder
-.output/
-#Extension App-file
-*.app
-#Rapid Application Development File
-rad.json
-#Translation Base-file
-*.g.xlf
-#License-file
-*.flf
-#Test results file
-TestResults.xml
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+*.venv
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Docker
+*.log
+docker-compose.override.yml
+
+# General
+*.swp
+*.swo
+.DS_Store
+*.bak
+*.tmp
+*.temp
+*.old
+*.orig
+*.rej
