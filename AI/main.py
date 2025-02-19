@@ -8,10 +8,13 @@ print("hello world")
 #1.get data 
 
 #2.build neural network 
+# use CNN layers 
 
 #3.create loss function 
 
 #4.creat training loop 
+# entrophy loss ? 
+# result given an input ?? 
 
 #5.save model e.g. weights
 
