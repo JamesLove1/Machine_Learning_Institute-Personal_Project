@@ -15,6 +15,7 @@ from torch.utils.data import DataLoader
 trainData = datasets.MNIST(root="", train=True, download=True, transform=ToTensor())
 testData = datasets.MNIST(root="", train=False, download=True, transform=ToTensor())
 
+#1a. split / load data into batches 
 train_dataLoader = DataLoader(trainData, batch_size=64, shuffle=True)
 test_dataLoader  = DataLoader(testData,  batch_size=64, shuffle=True)
 
