@@ -1,5 +1,11 @@
 ### AL ###
 #Template for AL projects for Dynamics 365 Business Central
+
+AI/mnist-model/output.png
+AI/mnist-model/MNIST/*
+*.pk.gz
+AI/totorial/data
+
 #launch.json folder
 .vscode/
 #Cache folder
