@@ -82,6 +82,3 @@ x = model(images)
 output = F.softmax(x, dim=1)
 finalOutput = torch.argmax(output, dim=1)
 print("final ", finalOutput)
-
-
-
