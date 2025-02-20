@@ -1,5 +1,5 @@
 #  Goals:
-#  1. create ML modle utilising https://pytorch.org/tutorials/beginner/basics/saveloadrun_tutorial.html
+#  1. create ML model utilising https://pytorch.org/tutorials/beginner/basics/saveloadrun_tutorial.html
 #  2. utilise https://pytorch.org/tutorials/beginner/nn_tutorial.html for insperation
 
 # Torch Imports
@@ -89,7 +89,7 @@ test_dataLoader  = DataLoader(testData,
 # finalOutput = torch.argmax(x, dim=1)
 # print("final ", finalOutput)
 
-# ouput from tranning ?????
+# ouput from trainning ?????
 
 # test using validation set 
 
