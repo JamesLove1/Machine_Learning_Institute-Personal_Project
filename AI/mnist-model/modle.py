@@ -2,43 +2,51 @@
 #  1. create ML modle utilising https://pytorch.org/tutorials/beginner/basics/saveloadrun_tutorial.html
 #  2. utilise https://pytorch.org/tutorials/beginner/nn_tutorial.html for insperation
 
+# Torch Imports
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
+# Torch Vision Imports
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 
+# Other Imports
 import matplotlib.pyplot as plt
 
-#1.build neural network 
-#    use CNN layers 
+#1.build neural network  
 class CCN_Network(nn.Module):
     
     def __init__(self):
         super().__init__()
     
-        # input layer - Feature Extraction 
-        self.conv1 = nn.Conv2d(in_channels=1, out_channels=16,kernel_size=3, stride=1, padding=1)
+        # Input Layer/ Feature Extraction 
+        self.conv1 = nn.Conv2d(in_channels=1,
+                               out_channels=16,
+                               kernel_size=3, 
+                               stride=1,
+                               padding=1
+                               )
         self.relu1 = nn.ReLU()
-        self.pool1 = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)
+        self.pool1 = nn.MaxPool2d(kernel_size=2,
+                                  stride=2,
+                                  padding=0
+                                  )
         
-        # output layer 
+        # Fully Connected Layers 
         self.flatten = nn.Flatten()
         self.fc1 = nn.Linear(in_features=16*14*14, out_features=10)
             
     def forward(self, x):
-        
         x = self.conv1(x)
         x = self.relu1(x)
         x = self.pool1(x)
         x = self.flatten(x)
         x = self.fc1(x)
-        
         return x 
 
-#2.get data 
+#2. Fetch Data 
 trainData = datasets.MNIST(root="", 
                            train=True, 
                            download=True, 
@@ -51,7 +59,7 @@ testData = datasets.MNIST(root="",
                           transform=ToTensor()
                           )
 
-#3. split / load data into batches 
+#3. Split/load data using batches 
 train_dataLoader = DataLoader(trainData, 
                               batch_size=64,
                               shuffle=True
@@ -63,10 +71,10 @@ test_dataLoader  = DataLoader(testData,
                               )
 
 
-# TODO: 4. create training loop 
+# TODO: 4. Training Loop 
 # ==================GOT UP TO HERE====================
-#   entrophy loss ? 
-#   result given an input ?? 
+#   loss function 
+#   optimiser weights  
 
 # epochs = 2
 # model = CCN_Network()
@@ -81,9 +89,6 @@ test_dataLoader  = DataLoader(testData,
 # finalOutput = torch.argmax(x, dim=1)
 # print("final ", finalOutput)
 
+# ouput from tranning ?????
 
-# TODO: 5.create loss function 
-# loss = F.cross_entropy()
-
-# TODO: 6.save model e.g. weights
-
+# TODO: 5.save model e.g. weights
