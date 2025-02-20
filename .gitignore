@@ -3,8 +3,22 @@ AI/mnist-model/MNIST/*
 *.pk.gz
 AI/totorial/data
 
+# Ignore MNIST dataset files
+AI/mnist-model/MNIST/
+
+# Ignore Jupyter Notebook checkpoints
+**/.ipynb_checkpoints
+
+# Ignore model weights and checkpoints
+AI/mnist-model/checkpoints/
+AI/mnist-model/*.pth
+AI/mnist-model/*.pt
+
 #launch.json folder
 .vscode/
+
+# Ignore logs
+*.log
 
 # Python
 __pycache__/
@@ -22,7 +36,6 @@ env.bak/
 venv.bak/
 
 # Docker
-*.log
 docker-compose.override.yml
 
 # General
@@ -35,3 +48,23 @@ docker-compose.override.yml
 *.old
 *.orig
 *.rej
+
+# Ignore temporary files created by editors
+*.~ 
+
+# Ignore virtual environment directories
+venv/
+ENV/
+env/
+.venv/
+.env/
+
+# Ignore compiled Python files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Ignore system files
+.DS_Store
+Thumbs.db
