@@ -12,10 +12,8 @@ from torchvision.transforms import ToTensor
 
 import matplotlib.pyplot as plt
 
-
 #1.build neural network 
 #    use CNN layers 
-
 class CCN_Network(nn.Module):
     
     def __init__(self):
@@ -29,7 +27,6 @@ class CCN_Network(nn.Module):
         # output layer 
         self.flatten = nn.Flatten()
         self.fc1 = nn.Linear(in_features=16*14*14, out_features=10)
-            
             
     def forward(self, x):
         
@@ -55,30 +52,38 @@ testData = datasets.MNIST(root="",
                           )
 
 #3. split / load data into batches 
-train_dataLoader = DataLoader(trainData, batch_size=64, shuffle=True)
-test_dataLoader  = DataLoader(testData,  batch_size=64, shuffle=True)
+train_dataLoader = DataLoader(trainData, 
+                              batch_size=64,
+                              shuffle=True
+                              )
+
+test_dataLoader  = DataLoader(testData,
+                              batch_size=64,
+                              shuffle=True
+                              )
 
 
-# TODO: 4.create loss function 
-
-# TODO: 5.create training loop 
+# TODO: 4. create training loop 
+# ==================GOT UP TO HERE====================
 #   entrophy loss ? 
 #   result given an input ?? 
 
+# epochs = 2
+# model = CCN_Network()
+
+# for epoch in epochs:
+    
+#     for images, lables in train_dataLoader:
+         
+#         x = model(images)
+
+
+# finalOutput = torch.argmax(x, dim=1)
+# print("final ", finalOutput)
+
+
+# TODO: 5.create loss function 
+# loss = F.cross_entropy()
+
 # TODO: 6.save model e.g. weights
 
-# ================
-# micilanious
-
-# shape  torch.Size([batch=64, channels=1, width=28, height=28])
-
-model = CCN_Network()
-
-images, lables = next(iter(train_dataLoader)) # for for loop when in prod 
-print("lables", lables)
-
-
-x = model(images)
-output = F.softmax(x, dim=1)
-finalOutput = torch.argmax(output, dim=1)
-print("final ", finalOutput)
