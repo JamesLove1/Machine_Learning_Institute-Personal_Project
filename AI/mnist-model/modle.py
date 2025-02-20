@@ -16,7 +16,7 @@ from torchvision.transforms import ToTensor
 import matplotlib.pyplot as plt
 
 #1.build neural network  
-class CCN_Network(nn.Module):
+class CNN_Network(nn.Module):
     
     def __init__(self):
         super().__init__()
@@ -77,7 +77,7 @@ test_dataLoader  = DataLoader(testData,
 #   optimiser weights  
 
 # epochs = 2
-# model = CCN_Network()
+# model = CNN_Network()
 
 # for epoch in epochs:
     
