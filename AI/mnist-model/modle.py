@@ -91,4 +91,6 @@ test_dataLoader  = DataLoader(testData,
 
 # ouput from tranning ?????
 
+# test using validation set 
+
 # TODO: 5.save model e.g. weights
