@@ -72,19 +72,34 @@ test_dataLoader  = DataLoader(testData,
 
 
 # TODO: 4. Training Loop 
-# ==================GOT UP TO HERE====================
 #   loss function 
 #   optimiser weights  
 
-# epochs = 2
 # model = CNN_Network()
+# print(model.state_dict())
 
-# for epoch in epochs:
+epochs = 2
+lr = 0.001
+model = CNN_Network()
+
+loss_func = nn.CrossEntropyLoss()
+optimiser = torch.optim.Adam(model.parameters(), lr=lr)
+
+
+for epoch in range(epochs):
     
-#     for images, lables in train_dataLoader:
+    for images, lables in train_dataLoader:
          
-#         x = model(images)
+        x = model(images)
+        
+        loss = loss_func(x, lables)
 
+        loss.
+
+        optimiser.zero_grad()
+        
+        
+        
 
 # finalOutput = torch.argmax(x, dim=1)
 # print("final ", finalOutput)
