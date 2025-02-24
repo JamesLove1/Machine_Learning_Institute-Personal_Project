@@ -13,5 +13,5 @@ RUN apt update \
 && pipenv --python /usr/bin/python3 \
 && pipenv install --deploy
 
-ENTRYPOINT [ "pipenv", "run" ]
-CMD [ "python3", "main.py" ]
+ENTRYPOINT [ "pipenv", "run", "fastapi", "run" ] 
+# CMD [ "python3", "main.py" ]

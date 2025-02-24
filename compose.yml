@@ -17,6 +17,15 @@ services:
     depends_on: 
       - db
 
+  web:
+    build: web
+    volumes:
+      - ./Web:/home
+    ports:
+      - 80:8503
+    depends_on: 
+      - ai
+
 networks:
   default:  
     name: MLI_Network
