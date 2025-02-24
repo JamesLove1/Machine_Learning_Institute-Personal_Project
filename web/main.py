@@ -1,30 +1,49 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from sqlalchemy import create_engine
 
 from streamlit_drawable_canvas import st_canvas
 
-payload= {}
-
-img, submit = st.columns(2)
-
-with img:
+def drawNumber(payload):
     st.write("Draw a number")
     canvas_result = st_canvas(
+                              "canvas",
                               update_streamlit=True,
                               width=250,
                               height=250
                               )
     payload["img"] = canvas_result.json_data
 
-with submit:
-    st.write("Submit the number")
-    actualNumber = st.text_input("Actual Number", value="None", key="predicted_number")
-    payload["actualNumberb"] = actualNumber
+def insertNumber(payload):
+        actualNumber = st.text_input("Actual Number", value="", key="predicted_number")
+        payload["actualNumberb"] = actualNumber
 
+def connectToDB():
+    url = "postgresql://user:password@db:5432/user"
+    engine = create_engine(url)
+    return pd.read_sql("results", con=engine)
+
+
+
+# ========= page layout =========
+
+payload = {}
+
+df = connectToDB()
+
+st.set_page_config(page_title="ML - MNST Modle", page_icon="🧊", layout="centered")
+
+img, submit = st.columns(2)
+
+with img:
+    drawNumber(payload)
+
+with submit:
+    insertNumber(payload)
 
 st.button("Predict Number", key="predict_number", help="Click to predict the number")
 
-
 st.write("Modle Results")
-st.table(pd.DataFrame())
+
+st.table(df.tail(10))

@@ -22,16 +22,25 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: test; Type: TABLE; Schema: public; Owner: user
+-- Name: results; Type: TABLE; Schema: public; Owner: user
 --
 
-CREATE TABLE public.test (
-    id integer,
-    name text
+CREATE TABLE public.results (
+    actual_result integer,
+    predicted_result integer,
+    "Timestamp" timestamp without time zone
 );
 
 
-ALTER TABLE public.test OWNER TO "user";
+ALTER TABLE public.results OWNER TO "user";
+
+--
+-- Data for Name: results; Type: TABLE DATA; Schema: public; Owner: user
+--
+
+COPY public.results (actual_result, predicted_result, "Timestamp") FROM stdin;
+\.
+
 
 --
 -- PostgreSQL database dump complete

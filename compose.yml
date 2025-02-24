@@ -20,9 +20,9 @@ services:
   web:
     build: web
     volumes:
-      - ./Web:/home
+      - ./web:/home
     ports:
-      - 80:8503
+      - 8000:8501
     depends_on: 
       - ai
 

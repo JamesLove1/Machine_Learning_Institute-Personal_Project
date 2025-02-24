@@ -13,5 +13,5 @@ RUN apt update \
 && pipenv --python /usr/bin/python3 \
 && pipenv install --deploy
 
-ENTRYPOINT /bin/bash
-# ENTRYPOINT [ "streamlit","run","main.py" ]
+# ENTRYPOINT /bin/bash
+ENTRYPOINT [ "pipenv", "run", "streamlit","run","main.py" ]
