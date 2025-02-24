@@ -34,6 +34,9 @@ df = connectToDB()
 
 st.set_page_config(page_title="ML - MNST Modle", page_icon="🧊", layout="centered")
 
+st.title("ML - MNST Modle")
+st.write("use the canvas to draw a number, then insert the actual number and click predict")
+
 img, submit = st.columns(2)
 
 with img:
