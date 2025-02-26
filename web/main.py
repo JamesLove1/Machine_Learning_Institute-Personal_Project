@@ -54,7 +54,7 @@ with submit:
 
 def sendRequst():
     
-    payload = {"img": state.img, "num": state.num} # 
+    payload = { "img": state.img, "num": state.num}  
     
     res.post("http://ai:8000/", json=payload)
 
