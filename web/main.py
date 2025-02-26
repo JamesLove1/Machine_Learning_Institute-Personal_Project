@@ -2,10 +2,16 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
+import requests as res
+import json as js
 
 from streamlit_drawable_canvas import st_canvas
 
-def drawNumber(payload):
+state = st.session_state
+state.img = []
+state.num = None
+
+def drawNumber():
     st.write("Draw a number")
     canvas_result = st_canvas(
                               "canvas",
@@ -13,11 +19,13 @@ def drawNumber(payload):
                               width=250,
                               height=250
                               )
-    payload["img"] = canvas_result.json_data
-
-def insertNumber(payload):
-        actualNumber = st.text_input("Actual Number", value="", key="predicted_number")
-        payload["actualNumberb"] = actualNumber
+    if canvas_result.image_data is not None:
+        state.img = canvas_result.image_data.tolist()
+    
+def insertNumber():
+        actualNumber = st.text_input("Actual Number", value="", key="predicted_number")  
+        state.num = actualNumber
+        
 
 def connectToDB():
     url = "postgresql://user:password@db:5432/user"
@@ -27,8 +35,6 @@ def connectToDB():
 
 
 # ========= page layout =========
-
-payload = {}
 
 df = connectToDB()
 
@@ -40,13 +46,23 @@ st.write("use the canvas to draw a number, then insert the actual number and cli
 img, submit = st.columns(2)
 
 with img:
-    drawNumber(payload)
+    drawNumber()
 
 with submit:
-    insertNumber(payload)
+    insertNumber()
 
-st.button("Predict Number", key="predict_number", help="Click to predict the number")
 
-st.write("Modle Results")
+def sendRequst():
+    
+    payload = {"img": state.img, "num": state.num} # 
+    
+    res.post("http://ai:8000/", json=payload)
 
-st.table(df.tail(10))
+st.button("Predict Number",
+          key="predict_number",
+          help="Click to predict the number",
+          on_click= sendRequst
+          )
+
+st.write("Model Results")
+st.table(df.tail(5))

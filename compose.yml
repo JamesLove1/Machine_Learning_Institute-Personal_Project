@@ -12,19 +12,21 @@ services:
 
   ai:
     build: AI
-    volumes:
-      - ./AI:/home
     depends_on: 
       - db
+    volumes:
+      - ./AI:/home
+    ports:
+      - 8001:8000
 
   web:
     build: web
+    depends_on: 
+      - ai
     volumes:
       - ./web:/home
     ports:
       - 8000:8501
-    depends_on: 
-      - ai
 
 networks:
   default:  

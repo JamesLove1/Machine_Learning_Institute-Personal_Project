@@ -76,6 +76,7 @@ watchdog = "==6.0.0"
 tqdm = "*"
 fastapi = {extras = ["standard"], version = "*"}
 uvicorn = {extras = ["standard"], version = "*"}
+pydantic = "*"
 
 [dev-packages]
 
