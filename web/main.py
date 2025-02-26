@@ -2,6 +2,7 @@
 # 1a. make sure data is flowing into correct columns with DB 
 # 1b. rename db columns
 # 2.  make model more accuret
+# 3. refactor file to seperate functions from page layout decoupling functions from frontend
 
 import streamlit as st
 import pandas as pd
