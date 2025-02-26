@@ -1,3 +1,8 @@
+# NEXT STEPS
+# 1a. make sure data is flowing into correct columns with DB 
+# 1b. rename db columns
+# 2.  make model more accuret
+
 import streamlit as st
 import pandas as pd
 import numpy as np
