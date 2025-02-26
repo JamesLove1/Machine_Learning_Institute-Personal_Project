@@ -4,7 +4,9 @@ import numpy as np
 from sqlalchemy import create_engine
 import requests as res
 import json as js
-
+from dbModels import Results
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
 from streamlit_drawable_canvas import st_canvas
 
 if "img" not in st.session_state:
@@ -31,18 +33,17 @@ def drawNumber():
         st.session_state["img"] = canvas_result.image_data.tolist()
     
 def insertNumber():
-        actualNumber = st.text_input("Actual Number", value="", key="predicted_number")  
-        st.session_state["num"] = actualNumber
-        
-        st.button("Predict Number",
-          key="predict_number",
-          on_click= sendRequst
-          )
-        
-        # st.write("Model Results")
-        st.write(f"Current prediction: {st.session_state.res}")
-        
-        
+    actualNumber = st.text_input("Actual Number", value="", key="predicted_number")  
+    st.session_state["num"] = actualNumber
+    
+def submitData():
+    st.button("Predict Number",
+      key="predict_number",
+      on_click= sendRequst
+      )
+    
+    st.write(f"Model output: {st.session_state.res}")     
+            
 def connectToDB():
     url = "postgresql://user:password@db:5432/user"
     engine = create_engine(url)
@@ -60,6 +61,16 @@ def sendRequst():
         
         resData = response.json()
         st.session_state["res"] = resData["output"]
+        
+        results_to_db(st.session_state.res, st.session_state.num)
+
+def results_to_db(modleResult, userDefinedResult):
+    engine = create_engine("postgresql://user:password@db/user")
+    with Session(engine) as session:
+
+        newRecord = Results(actual_result=modleResult, predicted_result=userDefinedResult)
+        session.add_all([newRecord])
+        session.commit()
 
 # ========= page layout =========
 
@@ -77,6 +88,11 @@ with img:
 
 with submit:
     insertNumber()
+    st.write(" ")
+    st.write(" ")
+    submitData()
+    st.write(" ")
+    st.write(" ")
 
 st.write("Previous Model Results")
 st.table(df.tail(5))
