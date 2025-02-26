@@ -22,12 +22,7 @@ class CNN_Network(nn.Module):
         self.flatten = nn.Flatten()
         self.fc1 = nn.Linear(in_features=16*14*14, out_features=10)
             
-    def forward(self, x):
-        
-        print(x.shape)
-        # print(type(x))
-        # print(x)
-        
+    def forward(self, x):       
         x = self.conv1(x)
         x = self.relu1(x)
         x = self.pool1(x)

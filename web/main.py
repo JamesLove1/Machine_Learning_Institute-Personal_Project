@@ -7,9 +7,17 @@ import json as js
 
 from streamlit_drawable_canvas import st_canvas
 
-state = st.session_state
-state.img = []
-state.num = None
+if "img" not in st.session_state:
+    st.session_state["img"] = []
+
+if "num" not in st.session_state:
+    st.session_state["num"] = None
+    
+if "res" not in st.session_state:
+    st.session_state["res"] = None
+    
+if "responseCode" not in st.session_state: 
+    st.session_state["responseCode"] = None
 
 def drawNumber():
     st.write("Draw a number")
@@ -20,11 +28,11 @@ def drawNumber():
                               height=250
                               )
     if canvas_result.image_data is not None:
-        state.img = canvas_result.image_data.tolist()
+        st.session_state["img"] = canvas_result.image_data.tolist()
     
 def insertNumber():
         actualNumber = st.text_input("Actual Number", value="", key="predicted_number")  
-        state.num = actualNumber
+        st.session_state["num"] = actualNumber
         
 
 def connectToDB():
@@ -54,15 +62,23 @@ with submit:
 
 def sendRequst():
     
-    payload = { "img": state.img, "num": state.num}  
+    payload = { "img": st.session_state.img, "num": st.session_state.num}  
     
-    res.post("http://ai:8000/", json=payload)
+    response = res.post("http://ai:8000/", json=payload)
 
+    st.session_state["responseCode"] = response.status_code
+    
+    if st.session_state["responseCode"] == 200:
+        
+        resData = response.json()
+        st.session_state["res"] = resData["output"]
+    
 st.button("Predict Number",
           key="predict_number",
-          help="Click to predict the number",
           on_click= sendRequst
           )
+
+st.write(f"output: from model: {st.session_state.res}")
 
 st.write("Model Results")
 st.table(df.tail(5))

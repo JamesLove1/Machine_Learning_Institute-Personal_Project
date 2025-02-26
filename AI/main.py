@@ -15,5 +15,5 @@ def read_root(requestBody: Data):
     
     res = modelWebService(requestBody)
     res = {"output": res}
-    print(res["output"])
+    
     return res

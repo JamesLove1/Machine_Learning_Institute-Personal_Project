@@ -28,15 +28,6 @@ def fetch_data():
                                transform=ToTensor()
                                )
 
-    # print(dir(trainData))
-    print(trainData.data, "\n")
-    
-    print(trainData.data.shape, "\n")
-
-    print(len(trainData.data[21]), "\n")
-    
-    print(trainData.data[21].shape, "\n")
-
     testData = datasets.MNIST(root="", 
                               train=False, 
                               download=True, 
