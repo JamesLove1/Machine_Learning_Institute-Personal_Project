@@ -3,7 +3,7 @@
 #  2. utilise https://pytorch.org/tutorials/beginner/nn_tutorial.html for insperation
 
 # Model Imports
-from mnist_model.model import CNN_Network
+from model import CNN_Network
 
 # Torch Imports
 import torch
@@ -27,6 +27,15 @@ def fetch_data():
                                download=True, 
                                transform=ToTensor()
                                )
+
+    # print(dir(trainData))
+    print(trainData.data, "\n")
+    
+    print(trainData.data.shape, "\n")
+
+    print(len(trainData.data[21]), "\n")
+    
+    print(trainData.data[21].shape, "\n")
 
     testData = datasets.MNIST(root="", 
                               train=False, 

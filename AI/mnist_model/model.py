@@ -24,7 +24,9 @@ class CNN_Network(nn.Module):
             
     def forward(self, x):
         
-        # print(x.shape)
+        print(x.shape)
+        # print(type(x))
+        # print(x)
         
         x = self.conv1(x)
         x = self.relu1(x)

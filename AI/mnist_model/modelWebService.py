@@ -1,52 +1,30 @@
-
 from mnist_model.model import CNN_Network
-
 import os
-import sys
-
 import torch
-
-model = CNN_Network()
-
+from torch.utils.data import DataLoader
+import torch.nn.functional as F
+import numpy as np
 
 path = os.path.join(os.path.dirname(os.path.abspath(__file__)),"CNN_Network.path")
 
-print(torch.load(path))
-
+model = CNN_Network()
 model.load_state_dict(torch.load(path))
 model.eval()
 
 def modelWebService(data):
     
-    print(data.num)
+    npData = np.array(data.img)
+    npData = npData.transpose((2, 1, 0))
     
+    t = torch.Tensor(npData)
+    t = t.unsqueeze(0)
     
-    return
-    # input = torch.randn(1, 1, 28, 28)
+    resizedT = F.interpolate(t,(28, 28), mode="bilinear", align_corners=False)
     
-    # print(input)
-    # print(input.shape)
-    # print(type(input))
+    singleChannel = torch.mean(resizedT, dim=1, keepdim=True)
     
-    # ======== I need to transform the input data =======
+    res = model(singleChannel)
+    res = torch.argmax(res).item()
     
-    # what sort of input to the modle do i need?
+    return res
     
-    # output = model()
-
-    # need torch argmax here to convert logits to class labels
-
-    # return output
-
-
-
-
-
-
-#  debugging
-if __name__ == "__main__":
-
-    class Data:
-        num = "10"
-
-    modelWebService(Data())

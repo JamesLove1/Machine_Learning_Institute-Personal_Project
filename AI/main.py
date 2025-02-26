@@ -13,6 +13,7 @@ class Data(BaseModel):
 @app.post("/")
 def read_root(requestBody: Data):
     
-    modelWebService(requestBody)
-
-    return {"Hello": "World"}
+    res = modelWebService(requestBody)
+    res = {"output": res}
+    print(res["output"])
+    return res
