@@ -39,10 +39,11 @@ def insertNumber():
     st.session_state["num"] = actualNumber
     
 def submitData():
+    
     st.button("Predict Number",
       key="predict_number",
       on_click= sendRequst
-      )
+      )    
     
     st.write(f"Model output: {st.session_state.res}")     
             
@@ -53,18 +54,27 @@ def connectToDB():
 
 def sendRequst():
     
-    payload = { "img": st.session_state.img, "num": st.session_state.num}  
+    if st.session_state.num != "":
     
-    response = res.post("http://ai:8000/", json=payload)
+        payload = { 
+                   "img": st.session_state.img,
+                   "num": st.session_state.num
+                }  
 
-    st.session_state["responseCode"] = response.status_code
+        response = res.post("http://ai:8000/", json=payload)
+
+        st.session_state["responseCode"] = response.status_code
+
+        if st.session_state["responseCode"] == 200:
+
+            resData = response.json()
+            st.session_state["res"] = resData["output"]
+
+            results_to_db(st.session_state.res, st.session_state.num)
     
-    if st.session_state["responseCode"] == 200:
-        
-        resData = response.json()
-        st.session_state["res"] = resData["output"]
-        
-        results_to_db(st.session_state.res, st.session_state.num)
+    else:
+        st.session_state["res"] = "please enter an actual number"
+
 
 def results_to_db(modleResult, userDefinedResult):
     engine = create_engine("postgresql://user:password@db/user")
