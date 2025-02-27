@@ -15,6 +15,6 @@ class Results(Base):
     )
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    actual_result: Mapped[Optional[int]] = mapped_column(Integer)
-    predicted_result: Mapped[Optional[int]] = mapped_column(Integer)
+    model_result: Mapped[Optional[int]] = mapped_column(Integer)
+    use_defined_result: Mapped[Optional[int]] = mapped_column(Integer)
     Timestamp: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)

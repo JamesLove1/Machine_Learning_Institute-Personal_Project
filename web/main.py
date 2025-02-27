@@ -8,7 +8,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from sqlalchemy import create_engine
 import requests as res
 import json as js
 from dbModels import Results
@@ -75,7 +74,7 @@ def results_to_db(modleResult, userDefinedResult):
     engine = create_engine("postgresql://user:password@db/user")
     with Session(engine) as session:
 
-        newRecord = Results(actual_result=modleResult, predicted_result=userDefinedResult)
+        newRecord = Results(model_result=modleResult, use_defined_result=userDefinedResult)
         session.add_all([newRecord])
         session.commit()
 
