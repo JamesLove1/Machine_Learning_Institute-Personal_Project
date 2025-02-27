@@ -1,9 +1,5 @@
 # NEXT STEPS
-# 1a. make sure data is flowing into correct columns with DB 
-# 1b. rename db columns
-# 1c. add trigger
-# 2.  make model more accuret
-# 3.  refactor file to seperate functions from page layout decoupling functions from frontend
+# 1.  make model more accuret
 
 import streamlit as st
 import pandas as pd
