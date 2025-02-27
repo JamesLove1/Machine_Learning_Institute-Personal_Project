@@ -24,12 +24,12 @@ def modelWebService(data):
     
     singleChannel = torch.mean(resizedT, dim=1, keepdim=True)
     
-    img_matrix = singleChannel.squeeze().numpy() 
-    plt.imshow(img_matrix, cmap="gray")
-    plt.colorbar()  # Show pixel value range
-    plt.title("Preprocessed Input Image")
-    plt.savefig("./", bbox_inches="tight")
-    plt.close()
+    # img_matrix = singleChannel.squeeze().numpy() 
+    # plt.imshow(img_matrix, cmap="gray")
+    # plt.colorbar()  # Show pixel value range
+    # plt.title("Preprocessed Input Image")
+    # plt.savefig("./", bbox_inches="tight")
+    # plt.close()
     
     res = model(singleChannel)
     res = torch.argmax(res).item()
