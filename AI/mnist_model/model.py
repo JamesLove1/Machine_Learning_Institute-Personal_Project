@@ -21,9 +21,18 @@ class CNN_Network(nn.Module):
         #                           padding=0
         #                           )
         
+        self.conv2 = nn.Conv2d(
+                            in_channels=16,
+                            out_channels=32,
+                            kernel_size=3,
+                            stride=1,
+                            padding=1
+                            )
+        self.relu2 = nn.ReLU()
+        
         # Fully Connected Layers 
         self.flatten = nn.Flatten()
-        self.fc1 = nn.Linear(in_features=16*28*28, out_features=10)
+        self.fc1 = nn.Linear(in_features=32*28*28, out_features=10)
         # self.fc1 = nn.Linear(in_features=16*14*14, out_features=10)
             
     def forward(self, x: torch.Tensor):
@@ -31,23 +40,29 @@ class CNN_Network(nn.Module):
         self.printX(x, "input")
                
         x = self.conv1(x)
-        self.printX(x, "conv1")
-        print("conv1", x.data.shape)
+        # self.printX(x, "conv1")
+        # print("conv1", x.data.shape)
         
         x = self.relu1(x)
-        print("relu1 ", x.data.shape)
-        self.printX(x, "relu1")
+        # self.printX(x, "relu1")
+        # print("relu1 ", x.data.shape)
+        
+        x = self.conv2(x)
+        # self.printX(x, "conv2")
+        
+        x = self.relu2(x)
+        # self.printX(x, "relu2")
         
         # x = self.pool1(x)
         # print("pool1", x.data.shape)
         # self.printX(x, "pool1")
 
         x = self.flatten(x)
-        print("flatten", x.data.shape)
         # self.printX(x, "flatten")
+        # print("flatten", x.data.shape)
         
         x = self.fc1(x)
-        print("final", x.data.shape)
+        # print("final", x.data.shape)
         
         return x 
 
