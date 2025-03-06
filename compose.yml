@@ -1,4 +1,4 @@
-name: MLI-Project
+name: mli-project
 
 services:
   db:
@@ -8,29 +8,29 @@ services:
       POSTGRES_USER: user
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./db:/home
+      # - ./db:/home
 
   ai:
     build: AI
     depends_on: 
       - db
-    volumes:
-      - ./AI:/home
-    ports:
-      - 8001:8000
+    # volumes:
+    #   - ./AI:/home
+    # ports:
+    #   - 8001:8000
 
   web:
     build: web
     depends_on: 
       - ai
-    volumes:
-      - ./web:/home
+    # volumes:
+    #   - ./web:/home
     ports:
       - 8000:8501
 
 networks:
   default:  
-    name: MLI_Network
+    name: mli_network
     driver: bridge
 
 volumes:

@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 WORKDIR /home
 
-COPY ./* .
+COPY . .
 
 ENV LANG=c.UTF-8
 ENV PATH=/root/.local/bin:$PATH
