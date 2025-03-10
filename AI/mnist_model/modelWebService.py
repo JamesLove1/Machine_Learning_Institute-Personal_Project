@@ -28,7 +28,7 @@ def modelWebService(data):
     
     predictedNum = torch.argmax(res).item()
     
-    predictionConfidence = F.softmax(res)[0][predictedNum].item()
+    predictionConfidence = F.softmax(res, dim=1)[0][predictedNum].item()
       
     return predictedNum, predictionConfidence
     
