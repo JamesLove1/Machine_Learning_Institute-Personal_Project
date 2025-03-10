@@ -57,4 +57,5 @@ The project consists of three main services:
 ![Application Interface](modelInterface.png)
 *Drawing canvas and prediction interface*
 
-
+## MNIST Dataset Preprocessing
+[Link](https://www.lri.fr/~marc/Master2/MNIST_doc.pdf#:~:text=The%20original%20black%20and%20white,center%20of%20the%2028x28%20field) to "The digits have been size-normalized and centered in a fixed-size image. The original black and white (bilevel) images from NIST were size normalized to fit in a 20x20 pixel box while preserving their aspect ratio. The resulting images contain grey levels as a result of the anti-aliasing technique used by the normalization algorithm. the images were centered in a 28x28 image by computing the center of mass of the pixels, and translating the image so as to position this point at the center of the 28x28 field."
