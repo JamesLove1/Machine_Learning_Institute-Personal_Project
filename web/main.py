@@ -17,8 +17,11 @@ if "img" not in st.session_state:
 if "num" not in st.session_state:
     st.session_state["num"] = ""
     
-if "res" not in st.session_state:
-    st.session_state["res"] = ""
+if "predictedNum" not in st.session_state:
+    st.session_state["predictedNum"] = ""
+
+if "predictionConfidence" not in st.session_state:
+    st.session_state["predictionConfidence"] = ""
     
 if "responseCode" not in st.session_state: 
     st.session_state["responseCode"] = ""
@@ -45,7 +48,8 @@ def submitData():
       on_click= sendRequst
       )    
     
-    st.write(f"Model output: {st.session_state.res}")     
+    st.write(f"Model output: {st.session_state.predictedNum}")
+    st.write(f"Model Prediction Confidence: {st.session_state.predictionConfidence}")     
             
 def connectToDB():
     url = "postgresql://user:password@db:5432/user"
@@ -68,13 +72,14 @@ def sendRequst():
         if st.session_state["responseCode"] == 200:
 
             resData = response.json()
-            st.session_state["res"] = resData["output"]
+            st.session_state["predictedNum"] = resData["predictedNum"]
+            st.session_state["predictionConfidence"] = resData["predictionConfidence"]
 
-            results_to_db(st.session_state.res, st.session_state.num)
+            results_to_db(st.session_state.predictedNum, st.session_state.num)
     
     else:
-        st.session_state["res"] = "please enter an actual number"
-
+        st.session_state["predictedNum"] = "please enter an actual number"
+        st.session_state["predictionConfidence"] = "None"
 
 def results_to_db(modleResult, userDefinedResult):
     engine = create_engine("postgresql://user:password@db/user")

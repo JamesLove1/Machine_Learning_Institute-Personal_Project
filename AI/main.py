@@ -13,7 +13,10 @@ class Data(BaseModel):
 @app.post("/")
 def read_root(requestBody: Data):
     
-    res = modelWebService(requestBody)
-    res = {"output": res}
+    predictedNum, predictionConfidence = modelWebService(requestBody)
+    response = {
+        "predictedNum":predictedNum, 
+        "predictionConfidence": predictionConfidence
+    }
     
-    return res
+    return response

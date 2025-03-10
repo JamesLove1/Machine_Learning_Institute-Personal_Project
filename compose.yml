@@ -26,7 +26,8 @@ services:
     # volumes:
     #   - ./web:/home
     ports:
-      - 8000:8501
+      # - 8000:8501
+      - 80:8501
 
 networks:
   default:  

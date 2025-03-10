@@ -23,9 +23,12 @@ def modelWebService(data):
     resizedT = F.interpolate(t,(28, 28), mode="bilinear", align_corners=False)
     
     singleChannel = torch.mean(resizedT, dim=1, keepdim=True)
-        
-    res = model(singleChannel)
-    res = torch.argmax(res).item()
     
-    return res
+    res = model(singleChannel)
+    
+    predictedNum = torch.argmax(res).item()
+    
+    predictionConfidence = F.softmax(res)[0][predictedNum].item()
+      
+    return predictedNum, predictionConfidence
     

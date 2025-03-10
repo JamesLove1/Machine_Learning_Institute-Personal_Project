@@ -37,7 +37,7 @@ class CNN_Network(nn.Module):
             
     def forward(self, x: torch.Tensor):
         
-        self.printX(x, "input")
+        # self.printX(x, "input")
                
         x = self.conv1(x)
         # self.printX(x, "conv1")
