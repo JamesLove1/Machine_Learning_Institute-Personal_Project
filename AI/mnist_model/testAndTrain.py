@@ -9,10 +9,10 @@ from model import CNN_Network
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, ConcatDataset
 
 # Torch Vision Imports
-from torchvision import datasets
+from torchvision import datasets, transforms
 from torchvision.transforms import ToTensor
 
 # Other Imports
@@ -22,11 +22,30 @@ from tqdm import tqdm
 #1. 
 def fetch_data():
     print("\nFetching Data")
-    trainData = datasets.MNIST(root="", 
+    
+    transformations = transforms.Compose([
+        transforms.RandomAffine(
+            degrees=0,
+            scale=(.8,1.2),
+            translate=(.2,.2),
+            fill=0
+        ),
+        transforms.ToTensor()
+    ])
+    
+    transfomedTrainData = datasets.MNIST(root="", 
+                               train=True, 
+                               download=True, 
+                               transform=transformations
+                               )
+    
+    originalTrainData = datasets.MNIST(root="", 
                                train=True, 
                                download=True, 
                                transform=ToTensor()
                                )
+    
+    trainData = ConcatDataset([transfomedTrainData, originalTrainData])
 
     testData = datasets.MNIST(root="", 
                               train=False, 
