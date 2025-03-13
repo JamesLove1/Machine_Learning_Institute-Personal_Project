@@ -2,7 +2,7 @@
 
 A web application that uses a Convolutional Neural Network (CNN) to recognize hand-drawn digits, built with PyTorch, FastAPI, and Streamlit.
 
-[Live Application](http://188.245.172.187/)
+[Live Application Link](http://188.245.172.187/)
 
 ## Getting Started
 
