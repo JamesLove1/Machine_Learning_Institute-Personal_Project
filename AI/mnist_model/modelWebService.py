@@ -24,6 +24,16 @@ def modelWebService(data):
     
     singleChannel = torch.mean(resizedT, dim=1, keepdim=True)
     
+    min_val = singleChannel.min()
+    max_val = singleChannel.max()
+    if max_val > min_val:
+        singleChannel = (singleChannel - min_val) / (max_val - min_val)
+    
+    threshold = 0.5
+    singleChannel = torch.where(singleChannel > threshold, 
+                              torch.ones_like(singleChannel), 
+                              torch.zeros_like(singleChannel))
+    
     res = model(singleChannel)
     
     predictedNum = torch.argmax(res).item()

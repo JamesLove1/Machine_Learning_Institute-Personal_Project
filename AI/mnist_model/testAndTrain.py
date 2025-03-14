@@ -26,26 +26,18 @@ def fetch_data():
     transformations = transforms.Compose([
         transforms.RandomAffine(
             degrees=0,
-            scale=(.8,1.2),
-            translate=(.2,.2),
+            scale=(.6,1),
+            translate=(0.2,0.1),
             fill=0
         ),
         transforms.ToTensor()
     ])
     
-    transfomedTrainData = datasets.MNIST(root="", 
+    trainData = datasets.MNIST(root="", 
                                train=True, 
                                download=True, 
                                transform=transformations
                                )
-    
-    originalTrainData = datasets.MNIST(root="", 
-                               train=True, 
-                               download=True, 
-                               transform=ToTensor()
-                               )
-    
-    trainData = ConcatDataset([transfomedTrainData, originalTrainData])
 
     testData = datasets.MNIST(root="", 
                               train=False, 
